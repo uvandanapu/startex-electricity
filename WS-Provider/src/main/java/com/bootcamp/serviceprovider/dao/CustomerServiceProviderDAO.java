@@ -28,6 +28,7 @@ public class CustomerServiceProviderDAO {
 			logger.info("Getting Plans : " + services);
 
 		} catch (HibernateException e) {
+			
 			e.printStackTrace();
 			return null;
 
