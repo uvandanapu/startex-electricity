@@ -32,6 +32,7 @@ public class CustomerServiceProviderDAO {
 			return null;
 
 		} finally {
+
 			HibernateUtility.closeSession();
 
 		}

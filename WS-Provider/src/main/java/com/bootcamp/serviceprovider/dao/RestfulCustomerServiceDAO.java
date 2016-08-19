@@ -33,7 +33,7 @@ public class RestfulCustomerServiceDAO {
 			e.printStackTrace();
 
 			return null;
-			
+
 		} finally {
 			HibernateUtility.closeSession();
 		}
