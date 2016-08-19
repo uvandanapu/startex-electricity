@@ -1,5 +1,7 @@
 package com.utilityservice.serviceplans.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.utilityservice.serviceplans.model.Customer;
+import com.utilityservice.serviceplans.service.CustomerDetailsRestClient;
 import com.utilityservice.serviceplans.service.CustomerService;
 import com.utilityservice.serviceplans.service.jms.QueueSenderJMS;
 
@@ -20,6 +23,11 @@ public class CustomerController {
 
 	@Autowired
 	QueueSenderJMS queueSender;
+	
+	@Autowired
+	CustomerDetailsRestClient customerDetailsRestClient;
+	
+	Customer customerInfo;
 
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -38,10 +46,18 @@ public class CustomerController {
 
 		if (customer != null) {
 			
-			customerService.addCustomer(customer);
-			customerService.sendJMSMessage(customer);
+			int id = customerService.addCustomer(customer);
+			
+			try {
+			 customerInfo = customerDetailsRestClient.getCustomerList(id);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			customerService.sendJMSMessage(customerInfo);
 
-			model.put("customer", customer);
+			model.put("customer", customerInfo);
 			
 
 		}

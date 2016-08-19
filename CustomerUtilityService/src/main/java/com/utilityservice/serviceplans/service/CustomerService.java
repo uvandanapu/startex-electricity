@@ -24,10 +24,13 @@ public class CustomerService {
 	}
 
 	@Transactional
-	public void addCustomer(Customer customer) {
+	public int addCustomer(Customer customer) {
 
-		this.customerDAO.addCustomer(customer);
+	int id=this.customerDAO.addCustomer(customer);
+	System.out.println(id);
 		setServicePlan(customer);
+		
+		return id;
 	}
 
 	public void sendJMSMessage(Customer customer) {

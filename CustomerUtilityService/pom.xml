@@ -283,7 +283,7 @@
 							<sourceRoot>src/main/java</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/soapWSDL.wsdl</wsdl>
+									<wsdl>src/main/resources/soapWSDL.wsdl</wsdl>
 
 									<extraargs>
 										<extraarg>-client</extraarg>
