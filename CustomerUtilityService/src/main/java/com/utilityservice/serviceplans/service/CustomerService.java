@@ -27,8 +27,10 @@ public class CustomerService {
 	public int addCustomer(Customer customer) {
 
 	int id=this.customerDAO.addCustomer(customer);
+	
 	System.out.println(id);
-		setServicePlan(customer);
+		
+	setServicePlan(customer);
 		
 		return id;
 	}
