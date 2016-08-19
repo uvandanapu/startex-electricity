@@ -43,10 +43,13 @@ public class CustomerController {
 		if (customer != null) {
 
 			int id = customerService.addCustomer(customer);
+			
 			customerService.sendJMSMessage(customer);
 
 			try {
+				
 				customer = customerDetailsRestClient.getCustomerList(id);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
