@@ -51,7 +51,8 @@ public class CustomerController {
 				customer = customerDetailsRestClient.getCustomerList(id);
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
+				
 				e.printStackTrace();
 			}
 
