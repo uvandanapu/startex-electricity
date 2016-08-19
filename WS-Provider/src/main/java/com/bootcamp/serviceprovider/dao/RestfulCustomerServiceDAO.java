@@ -18,7 +18,7 @@ public class RestfulCustomerServiceDAO {
 
 		CustomerInfo customerInfo = new CustomerInfo();
 
-		Session session = HibernateUtility.getSessionFactory().openSession();
+		Session session = HibernateUtility.getSession();
 
 		try {
 
@@ -35,7 +35,7 @@ public class RestfulCustomerServiceDAO {
 			return null;
 			
 		} finally {
-			session.close();
+			HibernateUtility.closeSession();
 		}
 		return customerInfo;
 

@@ -15,7 +15,7 @@ public class MessageServiceDao {
 
 	public void saveCustomerService(int id, int sid){
 		
-		Session session = HibernateUtility.getSessionFactory().openSession();
+		Session session = HibernateUtility.getSession();
 		
 		Transaction tx = session.beginTransaction();
 		
@@ -39,8 +39,7 @@ public class MessageServiceDao {
 			
 		} finally {
 			
-			session.flush();
-			session.close();
+			HibernateUtility.closeSession();
 			
 		}
 		
