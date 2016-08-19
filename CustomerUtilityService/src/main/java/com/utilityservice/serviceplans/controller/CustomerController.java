@@ -23,12 +23,9 @@ public class CustomerController {
 
 	@Autowired
 	QueueSenderJMS queueSender;
-	
+
 	@Autowired
 	CustomerDetailsRestClient customerDetailsRestClient;
-	
-	Customer customerInfo;
-
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 
@@ -41,24 +38,21 @@ public class CustomerController {
 
 	@RequestMapping(value = "/customer/add", method = RequestMethod.POST)
 
-	public String addCustomer(ModelMap model,
-			@ModelAttribute("customer") Customer customer) {
+	public String addCustomer(ModelMap model, @ModelAttribute("customer") Customer customer) {
 
 		if (customer != null) {
-			
+
 			int id = customerService.addCustomer(customer);
-			
+			customerService.sendJMSMessage(customer);
+
 			try {
-			 customerInfo = customerDetailsRestClient.getCustomerList(id);
+				customer = customerDetailsRestClient.getCustomerList(id);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			customerService.sendJMSMessage(customerInfo);
 
 			model.put("customer", customer);
-			
 
 		}
 
