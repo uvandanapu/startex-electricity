@@ -57,7 +57,7 @@ public class CustomerController {
 			
 			customerService.sendJMSMessage(customerInfo);
 
-			model.put("customer", customerInfo);
+			model.put("customer", customer);
 			
 
 		}
