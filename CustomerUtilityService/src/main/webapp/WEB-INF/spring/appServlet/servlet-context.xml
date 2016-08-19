@@ -64,6 +64,8 @@
 	
 	<beans:bean id="customerDAO" class="com.utilityservice.serviceplans.dao.CustomerDAO">
 	</beans:bean>
+	<beans:bean id="CustomerDetailsRestClient" class="com.utilityservice.serviceplans.service.CustomerDetailsRestClient">
+	</beans:bean>
 	<beans:bean id="customerService" class="com.utilityservice.serviceplans.service.CustomerService">
 		<beans:property name="customerDAO" ref="customerDAO"></beans:property>
 	</beans:bean>

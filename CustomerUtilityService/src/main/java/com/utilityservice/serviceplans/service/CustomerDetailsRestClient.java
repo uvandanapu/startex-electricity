@@ -3,6 +3,7 @@ package com.utilityservice.serviceplans.service;
 import java.io.IOException;
 
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+import org.springframework.stereotype.Service;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -10,6 +11,7 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.utilityservice.serviceplans.model.Customer;
 
+@Service
 public class CustomerDetailsRestClient {
 
 	public Customer getCustomerList(int id) throws IOException {
